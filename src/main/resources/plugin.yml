@@ -1,0 +1,13 @@
+name: ${project.name}
+version: ${project.version}
+main: ${project.groupId}.${project.artifactId}
+api-version: 1.13
+depend:
+  - BlueMap
+softdepend:
+  - SkinsRestorer
+authors: 
+  - Cerothen
+description: ${project.description}
+website: ${project.url}
+loadbefore: []

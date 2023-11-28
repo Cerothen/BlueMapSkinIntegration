@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>BlueMapSkinIntegration</name>
+  <description>A BlueMapAPI V2 plugin to add support for additional skin providers.</description>
+  <groupId>com.cerothen.bluemapskinintegration</groupId>
+  <artifactId>bluemapskinintegration</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <java.version>11</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+	<repositories>
+		<repository>
+			<id>spigot-repo</id>
+			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+		</repository>
+		<repository>
+			<id>papermc-repo</id>
+			<url>https://repo.papermc.io/repository/maven-public/</url>
+		</repository>
+		<repository>
+			<id>sonatype</id>
+			<url>https://oss.sonatype.org/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+		<!-- SkinsRestorer API -->
+		<repository>
+			<id>codemc</id>
+			<url>https://repo.codemc.org/repository/maven-public/</url>
+		</repository>
+	</repositories>
+
+  <dependencies>
+      <!-- BlueMap API -->
+    <dependency>
+			<groupId>com.github.BlueMap-Minecraft</groupId>
+			<artifactId>BlueMapAPI</artifactId>
+			<version>v2.6.1</version>
+			<scope>provided</scope>
+    </dependency>
+		<!-- SkinsRestorer API -->
+		<dependency>
+			<groupId>net.skinsrestorer</groupId>
+			<artifactId>skinsrestorer-api</artifactId>
+			<version>15.0.3</version>
+			<scope>provided</scope>
+		</dependency>
+    <!-- TechnicJelle Utilities -->
+		<dependency>
+			<groupId>com.github.TechnicJelle</groupId>
+			<artifactId>MCUtils</artifactId>
+			<version>v1.0</version>
+			<scope>compile</scope>
+		</dependency>
+    <!-- com.destroystokyo.paper -->
+		<dependency>
+			<groupId>com.destroystokyo.paper</groupId>
+			<artifactId>paper-api</artifactId>
+			<version>1.13-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+    <!-- Annotations -->
+		<dependency>
+			<groupId>org.jetbrains</groupId>
+			<artifactId>annotations</artifactId>
+			<version>23.1.0</version>
+			<scope>compile</scope>
+		</dependency>
+    <!-- bStats Plugin Statistics -->
+    <dependency>
+      <groupId>org.bstats</groupId>
+      <artifactId>bstats-bukkit</artifactId>
+      <version>3.0.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <!-- JSON Support -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20231013</version>
+		</dependency>
+    <!-- Apache Commons IO -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.5</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+      <!-- bStats -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.4.1</version>
+        <configuration>
+          <relocations>
+            <relocation>
+              <pattern>org.bstats</pattern>
+              <shadedPattern>com.cerothen.bluemapskinintegration</shadedPattern>
+            </relocation>
+          </relocations>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <createDependencyReducedPom>false</createDependencyReducedPom>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+  </build>
+</project>
