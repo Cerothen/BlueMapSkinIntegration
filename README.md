@@ -30,3 +30,5 @@ providers:
 # - "https://minotar.net/skin/{UUID}"
 # - "dir:skins/{UUID}.png"
 ```
+
+Project inspired by https://github.com/TechnicJelle/BlueMapCustomSkinProvider
